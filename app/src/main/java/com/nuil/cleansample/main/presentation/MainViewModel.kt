@@ -1,4 +1,4 @@
-package com.nuil.cleansample.main.presentation.main
+package com.nuil.cleansample.main.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,19 +11,18 @@ class MainViewModel(
     private val deleteItem: DeleteItem
 ) : BaseViewModel() {
 
-    private var _itemList: MutableLiveData<String> = MutableLiveData()
-    val itemList: LiveData<String>
-        get() = _itemList
+    private var _item: MutableLiveData<String> = MutableLiveData()
+    val item: LiveData<String>
+        get() = _item
 
     fun addItem(string: String) {
         /**
-         * setValue / postValue 비교
+         * setValue / postValue 상황별 사용 비교
          */
-
-
+        _item.value = addItem.excute(string)
     }
 
     fun deleteItem() {
-        itemList.value = deleteItem.excute()
+        _item.value = deleteItem.excute()
     }
 }

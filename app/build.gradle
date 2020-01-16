@@ -30,6 +30,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -40,11 +41,19 @@ dependencies {
     // aac
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-rc03'
 
+
     // koin
+    //안드로이드 context 주입, 안드로이드 log 지원 기능을 제공
     implementation 'org.koin:koin-android:2.0.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
+    //LifecycleOwner 들에서 scope 생성-삭제를 자동화하는 기능을 제공
+    implementation 'org.koin:koin-androidx-scope:2.0.0-rc-2'
+    //AAC의 ViewModel 을 Actiity나 Fragment에서 손쉽게 주입받을 수 있는 기능을 제공
+    implementation 'org.koin:koin-androidx-viewmodel:2.0.0-rc-2'
+    //테스트용 유틸리티
+    testImplementation 'org.koin:koin-test:2.0.1'
+
 
     // rx
-    implementation "io.reactivex.rxjava2:rxjava:2.2.16"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.17"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
 }

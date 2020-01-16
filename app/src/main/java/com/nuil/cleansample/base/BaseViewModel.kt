@@ -1,4 +1,4 @@
-package com.nuil.cleansample.presentation
+package com.nuil.cleansample.base
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable

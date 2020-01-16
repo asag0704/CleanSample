@@ -1,4 +1,4 @@
-package com.nuil.cleansample.presentation.activity
+package com.nuil.cleansample.base
 
 import android.os.Bundle
 import android.os.PersistableBundle

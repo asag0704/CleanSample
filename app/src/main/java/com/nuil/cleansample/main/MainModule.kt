@@ -5,10 +5,10 @@ import com.nuil.cleansample.main.domain.repository.ItemsRepository
 import com.nuil.cleansample.main.domain.usecase.AddItem
 import com.nuil.cleansample.main.domain.usecase.DeleteItem
 import com.nuil.cleansample.main.presentation.MainViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-val myDiModule = module {
-
+val mainModule = module {
     factory<ItemsRepository> { ItemsRepositoryImpl() }
     //val repo : ItemsRepository = ItemsRepositoryImpl()
 
@@ -16,18 +16,10 @@ val myDiModule = module {
     factory { DeleteItem(get()) }
 
     // viewmodel usecase
-    factory {
+    viewModel {
         MainViewModel(
             get(),
             get()
         )
     }
-}
-
-val accountModule = module {
-
-}
-
-val productModule=  module {
-
 }

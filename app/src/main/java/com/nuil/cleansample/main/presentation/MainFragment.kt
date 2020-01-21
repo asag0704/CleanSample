@@ -1,5 +1,6 @@
 package com.nuil.cleansample.main.presentation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,11 +31,11 @@ class MainFragment : Fragment() {
         return view
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initViewModel(view: View) {
         viewModel.item.observe(viewLifecycleOwner, Observer {
             endTime = System.currentTimeMillis()
-            Toast.makeText(context, "cal Time : ${endTime - startTime}", Toast.LENGTH_SHORT).show()
-            view.stateText.text = it
+            view.stateText.text = "State: ${it.title} \nTime: ${endTime - startTime}"
         })
     }
 

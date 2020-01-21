@@ -1,8 +1,9 @@
 package com.nuil.cleansample.main.domain.repository
 
-import io.reactivex.Observable
+import com.nuil.cleansample.main.data.ItemModel
+import io.reactivex.Single
 
 interface ItemsRepository {
-    fun addItem(string: String): Observable<String>
-    fun deleteItem(): Observable<String>
+    fun addItem(string: String): Single<ItemModel>
+    fun deleteItem(): Single<ItemModel>
 }

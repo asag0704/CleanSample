@@ -6,5 +6,5 @@ package com.nuil.cleansample.main.entity
  */
 data class ItemEntity(
     val title: String,
-    val dateTime: String
+    val currentTime: Long
 )

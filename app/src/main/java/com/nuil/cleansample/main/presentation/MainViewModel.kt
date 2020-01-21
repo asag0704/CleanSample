@@ -3,11 +3,11 @@ package com.nuil.cleansample.main.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.nuil.cleansample.main.data.transform
 import com.nuil.cleansample.main.domain.usecase.AddItem
 import com.nuil.cleansample.main.domain.usecase.DeleteItem
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.nuil.cleansample.main.entity.ItemEntity
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 
 
 class MainViewModel(
@@ -18,8 +18,8 @@ class MainViewModel(
     private val disposable: CompositeDisposable = CompositeDisposable()
 
     // LiveData의 내부 접근을 막기 위해 별도의 변수에 getter 선언
-    private var _item: MutableLiveData<String> = MutableLiveData()
-    val item: LiveData<String>
+    private var _item: MutableLiveData<ItemEntity> = MutableLiveData()
+    val item: LiveData<ItemEntity>
         get() = _item
 
     fun addItem(string: String) {
@@ -28,19 +28,20 @@ class MainViewModel(
          */
         disposable.add(
             addItem.excute(string)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-//                .map { it.transform() }
-                .subscribe { _item.value = it }
+                .map { it.transform() }
+                .subscribe({ response ->
+                    _item.value = response
+                }, Throwable::printStackTrace)
         )
     }
 
     fun deleteItem() {
         disposable.add(
             deleteItem.excute()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { _item.value = it }
+                .map { it.transform() }
+                .subscribe({ response ->
+                    _item.value = response
+                }, Throwable::printStackTrace)
         )
     }
 

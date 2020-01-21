@@ -24,7 +24,11 @@ class MainViewModel(
 
     fun addItem(string: String) {
         /**
-         * setValue / postValue 상황별 사용 비교
+         * setValue() : 메인 쓰레드에서 사용된다.
+         *
+         * postValue() : 백그라운드 쓰레드에서 사용되며
+         *               메인 쓰레드에서 라이브데이터 값을 붙이는 형식으로 작동된다.
+         *               관찰자가 없이 호출되고 뒤늦게 값을 관찰자가 생기더라도 그 전의 값을 받지 못한다.
          */
         disposable.add(
             addItem.excute(string)
@@ -45,6 +49,10 @@ class MainViewModel(
         )
     }
 
+    /**
+     * 액티비티 스코프가 완전히 종료되는 시점에 호출됨
+     * Memory leak 을 방지하기 위해 dispose 필수
+     */
     override fun onCleared() {
         if (!disposable.isDisposed) disposable.dispose()
         super.onCleared()

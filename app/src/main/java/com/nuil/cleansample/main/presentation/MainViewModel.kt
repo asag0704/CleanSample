@@ -32,7 +32,6 @@ class MainViewModel(
          */
         disposable.add(
             addItem.excute(string)
-                .map { it.transform() }
                 .subscribe({ response ->
                     _item.value = response
                 }, Throwable::printStackTrace)
@@ -42,7 +41,6 @@ class MainViewModel(
     fun deleteItem() {
         disposable.add(
             deleteItem.excute()
-                .map { it.transform() }
                 .subscribe({ response ->
                     _item.value = response
                 }, Throwable::printStackTrace)

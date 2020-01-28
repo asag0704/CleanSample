@@ -1,7 +1,7 @@
 package com.nuil.cleansample.main.data
 
 /**
- * Presentation Layer용 ItemModel
+ * Data Layer용 ItemModel
  */
 data class ItemModel(
     val title: String,
